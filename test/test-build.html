@@ -1,0 +1,15 @@
+<script src="../../systemjs/dist/system.src.js"></script>
+<script>
+  System.config({
+    loadedTranspilerRuntime_: true,
+    paths: { '*': './*' },
+    bundles: {
+      'built.js': ['test.js', 'traceur-runtime']
+    }
+  });
+
+  System.import('./test.js').then(function(m) {
+    console.log(m.p);
+    console.log(m.name);
+  });
+</script>

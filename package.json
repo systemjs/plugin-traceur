@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "traceur": "0.0.92",
+    "systemjs-builder": "^0.14.11"
+  }
+}

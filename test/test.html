@@ -1,0 +1,15 @@
+<script src="https://jspm.io/system.js"></script>
+<script>
+  System.config({
+    meta: {
+      './*': {
+        loader: '../plugin-traceur'
+      }
+    }
+  });
+
+  System.import('./test.js').then(function(m) {
+    console.log(m.name);
+    console.log(m.p);
+  });
+</script>
