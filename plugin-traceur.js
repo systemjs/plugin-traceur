@@ -10,8 +10,7 @@ define(function(require, exports, module) {
 
   exports.translate = function(load) {
     var options = {
-      // modules: this.builder ? 'parse' : 'instantiate', // pending https://github.com/google/traceur-compiler/pull/2010
-      modules: 'instantiate',
+      modules: this.builder ? 'parse' : 'instantiate',
       script: false,
       sourceMaps: this.builder ? 'memory' : 'inline',
       filename: load.address,
@@ -37,7 +36,6 @@ define(function(require, exports, module) {
 
     if (this.builder) {
       load.metadata.sourceMap = compiler.getSourceMap();
-      load.metadata.format = 'esm';
       return transpiledSource;
     }
     else {
@@ -46,12 +44,6 @@ define(function(require, exports, module) {
   };
 
   function doTraceurCompile(source, compiler, filename) {
-    try {
-      return compiler.compile(source, filename);
-    }
-    catch(e) {
-      // traceur throws an error array (pending 0.0.93)
-      throw e[0];
-    }
+    return compiler.compile(source, filename);
   }
 });

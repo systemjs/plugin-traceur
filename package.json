@@ -1,6 +1,7 @@
 {
-  "devDependencies": {
-    "traceur": "0.0.92",
-    "systemjs-builder": "^0.14.11"
+  "main": "plugin-traceur.js",
+  "registry": "jspm",
+  "dependencies": {
+    "traceur": "0.0.95"
   }
 }
