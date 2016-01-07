@@ -1,15 +1,19 @@
 <script src="../../systemjs/dist/system.src.js"></script>
 <script>
   System.config({
-    loadedTranspilerRuntime_: true,
-    paths: { '*': './*' },
+    transpilerRuntime: false,
     bundles: {
-      'built.js': ['test.js', 'traceur-runtime']
+      'built.js': ['test.js']
     }
   });
+
+  // SystemJS._loader.loadedTranspilerRuntime = true;
 
   System.import('./test.js').then(function(m) {
     console.log(m.p);
     console.log(m.name);
+  })
+  .catch(function(e) {
+    console.log(e);
   });
 </script>

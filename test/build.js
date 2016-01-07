@@ -9,10 +9,8 @@ builder.config({
     traceur: require.resolve('traceur/bin/traceur.js'),
     'traceur-runtime': require.resolve('traceur/bin/traceur-runtime.js')
   },
+  transpiler: 'plugin-traceur.js',
   meta: {
-    'test.js': {
-      loader: 'plugin-traceur.js'
-    },
     'traceur': {
       format: 'global',
       exports: 'traceur'

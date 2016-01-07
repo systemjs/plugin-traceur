@@ -1,3 +1,5 @@
+SystemJS._loader.loadedTranspilerRuntime = true;
+
 define(function(require, exports, module) {
   var traceur = require('traceur');
 
@@ -31,19 +33,30 @@ define(function(require, exports, module) {
 
     var transpiledSource = doTraceurCompile(load.source, compiler, options.filename);
 
-    if (this.builder && transpiledSource.match(/\$traceurRuntime/))
-      load.metadata.deps.push('traceur-runtime');
+    var usesRuntime = transpiledSource.match(/\$traceurRuntime/);
 
     if (this.builder) {
+
+      // this should not be a global but Traceur gives us no choice!
+      if (usesRuntime)
+        transpiledSource = 'import "traceur-runtime";' + transpiledSource;
       load.metadata.sourceMap = compiler.getSourceMap();
       return transpiledSource;
     }
     else {
+      if (usesRuntime)
+        load.metadata.deps.push('traceur-runtime');
       return '(function(__moduleName){' + transpiledSource + '\n})("' + load.name + '");\n//# sourceURL=' + load.address + '!transpiled';
     }
   };
 
   function doTraceurCompile(source, compiler, filename) {
-    return compiler.compile(source, filename);
+    try {
+      return compiler.compile(source, filename);
+    }
+    catch(e) {
+      e.stack = e.stack || e.message;
+      throw e;
+    }
   }
 });

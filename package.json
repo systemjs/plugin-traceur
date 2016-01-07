@@ -1,7 +1,11 @@
 {
+  "name": "systemjs-plugin-traceur",
+  "version": "0.0.1",
   "main": "plugin-traceur.js",
   "registry": "jspm",
+  "jspmPackage": true,
   "dependencies": {
-    "traceur": "0.0.95"
+    "traceur": "0.0.95",
+    "traceur-runtime": "0.0.95"
   }
 }
