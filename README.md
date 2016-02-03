@@ -47,7 +47,7 @@ SystemJS.config({
     }
   },
   transpiler: 'plugin-traceur',
-  trasnpilerRuntime: false
+  transpilerRuntime: false
 });
 ```
 
