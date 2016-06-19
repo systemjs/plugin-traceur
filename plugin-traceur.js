@@ -12,7 +12,7 @@ define(function(require, exports, module) {
 
   exports.translate = function(load) {
     var options = {
-      modules: this.builder ? 'parse' : 'instantiate',
+      modules: 'instantiate',
       script: false,
       sourceMaps: this.builder ? 'memory' : 'inline',
       filename: load.address,
@@ -28,19 +28,17 @@ define(function(require, exports, module) {
 
     var compiler = new traceur.Compiler(options);
 
-    if (!load.metadata.format)
-      load.metadata.format = 'register';
+    load.metadata.format = 'register';
 
     var transpiledSource = doTraceurCompile(load.source, compiler, options.filename);
 
     var usesRuntime = transpiledSource.match(/\$traceurRuntime/);
 
     if (this.builder) {
-
       // this should not be a global but Traceur gives us no choice!
       if (usesRuntime)
-        transpiledSource = 'import "traceur-runtime";' + transpiledSource;
-      load.metadata.sourceMap = compiler.getSourceMap();
+        transpiledSource = transpiledSource.replace('System.register(["', 'System.register(["traceur-runtime", "').replace('System.register([]', 'System.register(["traceur-runtime"]');
+      load.metadata.sourceMap = JSON.parse(compiler.getSourceMap());
       return transpiledSource;
     }
     else {
