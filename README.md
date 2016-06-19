@@ -1,4 +1,4 @@
-SystemJS Babel Plugin
+SystemJS Traceur Plugin
 ===
 
 Provides Traceur transpilation in the browser and in builds when using SystemJS 0.19.12+ and SystemJS Builder 0.15+.
@@ -10,10 +10,10 @@ Compatible with the the automatic Rollup optimizations in SystemJS Builder.
 ### jspm
 
 ```
-jspm install plugin-babel
+jspm install plugin-traceur
 ```
 
-Then set `transpiler: 'plugin-babel'` in the `jspm.js` config file.
+Then set `transpiler: 'plugin-traceur'` in the `jspm.js` config file.
 
 Alternatively use `jspm init -p` to set up the plugin automatically.
 
