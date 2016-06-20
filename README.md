@@ -78,11 +78,6 @@ Build support works with no further configuration through the standard jspm buil
 To build with SystemJS builder, use the following build configuration:
 
 ```javascript
-builder.config({
-  map: {
-    'systemjs-babel-build': 'path/to/systemjs-plugin-babel/systemjs-babel-node.js'
-  }
-});
 builder.bundle('app.js', 'out-bundle.js'); // create a named bundle
 builder.buildStatic('app.js', 'out-static.js', { format: 'cjs' }); // create a static optimized build
 ```
