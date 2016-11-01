@@ -39,7 +39,8 @@ SystemJS.config({
   meta: {
     'traceur': {
       format: 'global',
-      exports: 'traceur'
+      exports: 'traceur',
+      scriptLoad: false
     },
     'traceur-runtime': {
       format: 'global',
@@ -85,7 +86,7 @@ builder.buildStatic('app.js', 'out-static.js', { format: 'cjs' }); // create a s
 When using `builder.buildStatic`, the ES module structure will be preserved and [Rollup optimizations](https://github.com/rollup/rollup) will included automatically
 allowing for static dead code removal.
 
-Because Traceur runtime is a global, it can't be included in the Rollup optimizations. 
+Because Traceur runtime is a global, it can't be included in the Rollup optimizations.
 It can be useful to entirely separate out the `traceur-runtime` dependency from the build and have it in its own bundle, for example via:
 
 ```javascript
